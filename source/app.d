@@ -41,7 +41,14 @@ int max_collisions = 4096;
 int block_count = 64;
 
 int main(string[] args) {
-	getopt(args, "max_collisions", &max_collisions, "block_count", &block_count);
+	auto no_args = args.length <= 1;
+	auto help = getopt(args, "col", "the maximum number of collisions in the physics engine",
+			&max_collisions, "blk", "the number of test blocks to create", &block_count);
+
+	if (no_args || help.helpWanted) {
+		defaultGetoptPrinter("dmech perf test: benchmark", help.options);
+		return 2;
+	}
 
 	writefln("dmech perf test (%s max collisions, %s blocks)", max_collisions, block_count);
 
@@ -77,9 +84,10 @@ int main(string[] args) {
 		world.update(dt);
 	}
 
+	writefln("running benchmark (%s iterations)", iterations);
 	auto result = benchmark!(benchmark_func)(iterations);
 	auto avg_time = (result[0].total!"msecs") / (cast(float) iterations);
-	writefln("benchmark (%s) iter: %s msec per iteration", iterations, avg_time);
+	writefln("result: %s msec per iteration", avg_time);
 
 	// dump();
 
