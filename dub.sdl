@@ -1,0 +1,6 @@
+name "dmech_perf_test"
+description "A minimal D application."
+authors "xdrie"
+copyright "Copyright © 2020, xdrie"
+license "proprietary"
+dependency "dmech" version="~master"

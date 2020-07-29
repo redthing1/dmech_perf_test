@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/dmech_perf_test
+dmech_perf_test.so
+dmech_perf_test.dylib
+dmech_perf_test.dll
+dmech_perf_test.a
+dmech_perf_test.lib
+dmech_perf_test-test-*
+*.exe
+*.o
+*.obj
+*.lst
